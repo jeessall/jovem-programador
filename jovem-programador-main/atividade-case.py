@@ -2,8 +2,8 @@
 #função onde fica toda a lógica
 #essa função é chamada no fim do código para rodar todo o  while
 def dicionario_produtos():
-  #dicionario criado com a chave para o nome de produtos e outra chave como valor
-    dicionario = {
+  #produtos criado com a chave para o nome de produtos e outra chave como valor
+    produtos = {
         "arroz": {"Preço": 4.60},
         "feijão": {"Preço": 7.98},
         "macarrão": {"Preço": 3.59},
@@ -27,16 +27,16 @@ def dicionario_produtos():
         #caso a opção for o usuário vai cadastrar um produto da nossa lista
             case 1:
                 nome = input("Digite o nome do produto: ").lower()#converte todos os caracteres em minusculo
-                #se o nome do produto estiver dentro do dicionario
-                if nome in dicionario:
+                #se o nome do produto estiver dentro do produtos
+                if nome in produtos:
                   #vai ser adicionado ao carrinho que vai receber a entrada do usuário pelo nome
                   #o carrinho vai receber o nome dos produtos dentro do dicionário
-                    carrinho[nome] = dicionario[nome]["Preço"]
+                    carrinho[nome] = produtos[nome]["Preço"]
                     #aqui printa o produto que foi adicionado dentro do carrinho
                     print(f"{nome.capitalize()} adicionado ao carrinho.")
                     #o captalize transforma a primeira letra em maiúsculo)
                 else:
-                  #caso o produto que o usuário digitar não esteja no dicionario
+                  #caso o produto que o usuário digitar não esteja no produtos
                   #vai dar indisponivel e vai pedir pra ele escolher outra opção
                     print("Produto não disponível.")
             case 2:
@@ -52,20 +52,22 @@ def dicionario_produtos():
                         total += preco
                     print(f"Total: R${total:.2f}")
                     #:.2f permite arrendondar o número para não ficar infinito
-                else:
-                  #caso ele digite de primeira a opção 2 vai dar carrinho vazio
-                    print("O carrinho está vazio.")
-            case 3:
-              continuar = input("Digite continuar ou sair: ") 
+                    continuar = input("Digite continuar ou sair: ").lower()
                   #dando a opção do usuário continuar ou sair
-              if continuar == "continuar":
-                  print("Quero continuar")
-                  continue
-                  #aqui o cliente finaliza a compra e o código encerra
-              elif continuar == "sair":
-                  print("Finalizando compra")
-                  break
-              #aqui o cliente finaliza a compra e o código encerra
+                if continuar == "continuar":
+                    print("Quero continuar")
+                    continue
+                    #aqui o cliente finaliza a compra e o código encerra
+                elif continuar == "sair":
+                    print("Saindo..")
+                    break
+                #aqui o cliente finaliza a compra e o código encerra
+                else:
+                    #caso ele digite de primeira a opção 2 vai dar carrinho vazio
+                      print("O carrinho está vazio.")
+            case 3:
+                print("Finalizando a compra...")
+                break        
             case _:
                 print("Opção inválida.")
 
