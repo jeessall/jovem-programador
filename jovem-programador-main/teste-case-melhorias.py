@@ -61,6 +61,93 @@ produtos_produtos()
 #               else:
 #                   print("O carrinho está vazio.")
 
+#Orientado a objetos
+class Produto:
+    def __init__(self, nome, preco):
+        self.nome = nome
+        self.preco = preco
+
+class Carrinho:
+    def __init__(self):
+        self.itens = {}
+
+    def adicionar_produto(self, produto):
+        self.itens[produto.nome] = produto.preco
+        print(f"{produto.nome.capitalize()} adicionado ao carrinho.")
+
+    def visualizar_carrinho(self):
+        if not self.itens:
+            print("O carrinho está vazio.")
+            return
+
+        print("\n==== CARRINHO ====")
+        total = 0
+        for nome, preco in self.itens.items():
+            print(f"{nome.capitalize()}: R${preco:.2f}")
+            total += preco
+        print(f"Total: R${total:.2f}")
+
+        continuar = input("Digite 'continuar' para continuar ou 'sair' para sair: ").lower()
+        if continuar == "continuar":
+            print("Quero continuar")
+            return True  # continua no loop
+        elif continuar == "sair":
+            print("Saindo...")
+            return False  # sai do loop
+        else:
+            print("Opção inválida, retornando ao menu.")
+            return True
+
+class Loja:
+    def __init__(self):
+        self.produtos = {
+            "arroz": Produto("arroz", 4.60),
+            "feijão": Produto("feijão", 7.98),
+            "macarrão": Produto("macarrão", 3.59),
+            "óleo": Produto("óleo", 6.89),
+            "café": Produto("café", 28.90)
+        }
+        self.carrinho = Carrinho()
+
+    def mostrar_menu(self):
+        print("\n==== MENU ====")
+        print("Nossos produtos:")
+        for produto in self.produtos.values():
+            print(f"{produto.nome.capitalize()} R$ {produto.preco:.2f}")
+        print("\n1 - Adicionar produto")
+        print("2 - Visualizar carrinho")
+        print("3 - Finalizar compra")
+
+    def executar(self):
+        while True:
+            self.mostrar_menu()
+            try:
+                opcao = int(input("Digite uma opção: "))
+            except ValueError:
+                print("Por favor, digite um número válido.")
+                continue
+
+            if opcao == 1:
+                nome = input("Digite o nome do produto: ").lower()
+                if nome in self.produtos:
+                    self.carrinho.adicionar_produto(self.produtos[nome])
+                else:
+                    print("Produto não disponível.")
+            elif opcao == 2:
+                continuar = self.carrinho.visualizar_carrinho()
+                if not continuar:
+                    break
+            elif opcao == 3:
+                print("Finalizando a compra...")
+                break
+            else:
+                print("Opção inválida.")
+
+
+# Executando a loja
+loja = Loja()
+lo
+
 
 
 
