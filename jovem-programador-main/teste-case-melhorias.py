@@ -20,7 +20,9 @@ def produtos_produtos():
                 nome = input("Digite o nome do produtos: ").lower()
                 if nome in produtos:
                     carrinho[nome] = produtos[nome]["Preço"]
+
                     print(f"{nome.capitalize()} adicionado ao carrinho.")
+                    
                 else:
                     print("produtos não disponível.")
             case 2:
